@@ -26,12 +26,27 @@ const App = () => {
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <p>has {votes[selected]} votes</p>
+      <Heading text='Anecdote of the day' />
+      <Anecdotes anecdotes={anecdotes} votes={votes} selected={selected} />
       <Button text='vote' handleClick={handleVoteClick} />
       <Button text='set anecdote' handleClick={handleAnecdoteClick} />
+
+      <Heading text='Anecdote with most votes' />
+      <Anecdotes anecdotes={anecdotes} votes={votes}
+                selected={votes.indexOf(Math.max(...votes))} />
     </div>
     
+  )
+}
+
+const Heading = ({text}) => <h1>{text}</h1>
+
+const Anecdotes = ({anecdotes, votes, selected}) => {
+  return (
+    <>
+      <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
+    </>
   )
 }
 
